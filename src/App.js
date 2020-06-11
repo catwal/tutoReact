@@ -20,7 +20,7 @@ class App extends React.Component {
 
         console.log('article vu par le parent', article);
 
-    }
+    };
 
     render() {
         return (
@@ -37,7 +37,7 @@ class App extends React.Component {
 
                 <Form FormTitle="liste des courses à acheter" addArticle={this.addArticle} />
 
-                <ItemList />
+                <ItemList articles={this.state.articles}/>
 
             </div>
         );
