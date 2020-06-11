@@ -1,28 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React    from 'react';
+import logo     from './logo.svg';
 import './App.css';
 import ItemList from './components/ItemList';
-import Form from './components/Form';
+import Form     from './components/Form';
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+    state = { articles : [] };
 
-        <h3>Liste de courses</h3>
+    addArticle = (article) => {
+        //récupération état courant
+        let oldArticles = this.state.articles;
+        //article.id = this.state.articles.length + 1;
+        //library uuid
+        article.id = Date.now();
+        //créer un nouveau tableau plutot que de modifier un tableau existant avec push
+        let newArticles = [...oldArticles, article];
+        this.setState({articles: newArticles});
 
-        <Form FormTitle="liste des courses à acheter"/>
+        console.log('article vu par le parent', article);
 
-        <ItemList />
+    }
 
-    </div>
-  );
+    render() {
+        return (
+            <div className="App">
+
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                        Edit <code>src/App.js</code> and save to reload.
+                    </p>
+                </header>
+
+                <h3>Liste de courses</h3>
+
+                <Form FormTitle="liste des courses à acheter" addArticle={this.addArticle} />
+
+                <ItemList />
+
+            </div>
+        );
+    }
 }
 
 export default App;

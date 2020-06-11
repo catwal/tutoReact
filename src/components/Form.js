@@ -9,7 +9,9 @@ class Form extends React.Component {
     handleSubmit = (event) => {
         //empêche rafraîchissement page sur submit
         event.preventDefault();
+        this.props.addArticle(this.state);
         console.log(this.state);
+
     };
 
     render() {
