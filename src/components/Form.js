@@ -6,29 +6,40 @@ class Form extends React.Component {
         quantity: 0
     };
 
+    handleSubmit = (event) => {
+        //empêche rafraîchissement page sur submit
+        event.preventDefault();
+        console.log(this.state);
+    };
+
     render() {
         return (
             <div>
-                <h3>Ajouter des articles à acheter</h3>
-                <form>
+                <h3>{this.props.FormTitle}</h3>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type="number"
                         placeholder="quantité"
-                        value=""
+                        /*rendre un état courant avec this.state*/
+                        value={this.state.quantity}
                         onChange={
                             //la fonction permet de différé l'action du onChange
                             // () => console.log('coucou')
                             // (event) => console.log(event)
-                            // (event) => this.setState({quantity: event.target.value})
-                            (event) => this.setState({quantity: 5})
+                            //(event) => this.setState({quantity: 5})
+                             (event) => this.setState({quantity: event.target.value})
+
                         }
                     />
                     <input
                         type="text"
                         placeholder="nom de l'article"
-                        value=""
-                        onChange={(event) => this.setState({name: event.target.value})} />
-                    <button type="submit">Ajouter</button>
+                        value={this.state.name}
+                        onChange={(event) => this.setState({name: event.target.value})}
+                    />
+                    <button type="submit">
+                        Ajouter
+                    </button>
                 </form>
             </div>
         );

@@ -17,7 +17,7 @@ function App() {
 
         <h3>Liste de courses</h3>
 
-        <Form />
+        <Form FormTitle="liste des courses à acheter"/>
 
         <ItemList />
 
